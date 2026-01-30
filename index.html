@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You 🩷</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  background: #0f0f14;
+  color: #ffd6e8;
+  font-family: Arial, sans-serif;
+}
+
+.page {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  padding: 30px;
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.page.active {
+  display: flex;
+}
+
+h1 {
+  color: #ff9fc9;
+  text-align: center;
+}
+
+p {
+  font-size: 18px;
+  line-height: 1.7;
+  margin-top: 20px;
+  text-align: center;
+}
+
+button {
+  margin-top: 30px;
+  padding: 12px 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: 25px;
+  background: #ff9fc9;
+  color: #0f0f14;
+  cursor: pointer;
+}
+
+.tap {
+  margin-top: 15px;
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+</style>
+</head>
+
+<body>
+
+<!-- TEXT PAGES -->
+<div class="page active">
+  <h1>I love you cutieeeee 🩷</h1>
+  <p>
+    You came into my life quietly, yet changed everything.
+    Being with you feels warm, safe, and real.
+  </p>
+  <button onclick="nextPage()">Continue 🩷</button>
+</div>
+
+<div class="page">
+  <h1>The day we first met 🩷</h1>
+  <p>
+    That day felt simple, but it stayed with me.
+    The way you come towards me with waving you both hand with world's beautiful smile on your face everything is still in my mind the way you talk everything feel good with you.
+    Something about you felt familiar, comforting,
+    like a moment meant to be remembered.
+  </p>
+  <button onclick="nextPage()">Continue 🩷</button>
+</div>
+
+<div class="page">
+  <h1>How you make me feel 🩷</h1>
+  <p>
+    You make life softer.
+    Calm, comfort, and happiness come naturally with you.
+  </p>
+  <button onclick="nextPage()">Continue 🩷</button>
+</div>
+
+<div class="page">
+  <h1>Us, in the future 🩷</h1>
+  <p>
+    Not perfection, just together.
+    That’s what matters most to me.
+  </p>
+  <button onclick="nextPage()">Continue 🩷</button>
+</div>
+
+<!-- VIDEO PAGES -->
+<div class="page">
+  <video src="video1.mp4" muted loop playsinline></video>
+  <div class="tap" onclick="playSound(event, this)">Tap here to play sound 🩷</div>
+  <button onclick="nextPage()">Continue 🩷</button>
+</div>
+
+<div class="page">
+  <video src="video2.mp4" muted loop playsinline></video>
+  <div class="tap" onclick="playSound(event, this)">Tap here to play sound 🩷</div>
+  <button onclick="nextPage()">Continue 🩷</button>
+</div>
+
+<div class="page">
+  <video src="video3.mp4" muted loop playsinline></video>
+  <div class="tap" onclick="playSound(event, this)">Tap here to play sound 🩷</div>
+</div>
+
+<script>
+let pages = document.querySelectorAll(".page");
+let current = 0;
+
+function stopAllVideos() {
+  document.querySelectorAll("video").forEach(v => {
+    v.pause();
+    v.currentTime = 0;
+    v.muted = true;
+  });
+}
+
+function nextPage() {
+  stopAllVideos();
+  pages[current].classList.remove("active");
+  current++;
+  if (current < pages.length) {
+    pages[current].classList.add("active");
+  }
+}
+
+function playSound(event, page) {
+  event.stopPropagation(); // 🔒 prevents page change
+  stopAllVideos(); // 🔒 ensures only ONE sound
+  let video = page.querySelector("video");
+  if (video) {
+    video.muted = false;
+    video.play();
+  }
+}
+</script>
+
+</body>
+</html>
